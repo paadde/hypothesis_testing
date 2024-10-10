@@ -2,6 +2,7 @@
 from pathlib import Path
 import json
 import requests
+import logging
 from config.settings import DATASET
 from config.settings import OWNER
 from config.settings import FILE_NAME
@@ -11,6 +12,8 @@ def get_data():
     """
     retrieve data from Kaggle through their public API
     """
+    logger = logging.getLogger(__name__)
+
     config_path = Path.cwd() / 'config' / 'kaggle.json'
 
     with open(config_path) as f:
@@ -30,8 +33,10 @@ def get_data():
                 auth=(username, api_key),
                 stream=True
                 )
-        print(f'The request returned status_code: {response.status_code}')
+        logger.info(
+                f'The request returned status_code: {response.status_code}'
+                )
     except Exception as e:
-        print(f'An error occurred during extraction: {e}')
+        logger.info(f'An error occurred during extraction: {e}')
 
     return response

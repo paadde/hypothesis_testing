@@ -3,4 +3,5 @@
 *.pyo
 *.env
 kaggle.json
+postgres_credential.json
 env/
