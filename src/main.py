@@ -1,8 +1,8 @@
 import logging
 from pathlib import Path
-from api_client import get_data
-from data_processing import transform_data
-from database import upload_to_db
+from src.api_client import get_data
+from src.data_processing import transform_data
+from src.database import upload_to_db
 
 
 # set up log file to track ETL flow and errors
@@ -20,7 +20,6 @@ logger = logging.getLogger(__name__)
 
 
 def main():
-
     logger.info('Downloading data from Kaggle...')
     data = get_data()
 
